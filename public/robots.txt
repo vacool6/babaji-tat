@@ -1,0 +1,9 @@
+# robots.txt for Babaji Tour & Travel
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://babajitravel.com/sitemap.xml
+
+# Disallow admin or private pages if any
+# Disallow: /admin/
