@@ -1,6 +1,10 @@
 import { useEffect } from "react";
 import Hero from "../components/Hero/Hero";
+import StatsSection from "../components/StatsSection/StatsSection";
+import WhyChooseUsSection from "../components/WhyChooseUsSection/WhyChooseUsSection";
+import FleetSection from "../components/FleetSection/FleetSection";
 import DestinationsSection from "../components/DestinationsSection/DestinationsSection";
+import TestimonialsSection from "../components/TestimonialsSection/TestimonialsSection";
 import {
   getLocalBusinessSchema,
   getCabServiceSchema,
@@ -33,7 +37,11 @@ const HomePage = () => {
   return (
     <div className="home-page">
       <Hero />
+      <StatsSection />
+      <WhyChooseUsSection />
+      <FleetSection />
       <DestinationsSection />
+      <TestimonialsSection />
     </div>
   );
 };

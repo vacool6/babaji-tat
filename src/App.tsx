@@ -24,9 +24,9 @@ function App() {
             element={
               <>
                 <SEOHead
-                  title="Babaji Tour & Travel - Premium Cab Services in Uttarakhand"
-                  description="Book premium cab services and curated spiritual journeys across the majestic landscapes of Uttarakhand. Reliable travel to Nainital, Auli, Jim Corbett, and more."
-                  keywords="uttarakhand cab booking, nainital taxi, dehradun cab service, rishikesh travel"
+                  title="Babaji Tour & Travel - Premium Cab Services Across India"
+                  description="Book premium cab services and curated journeys across the majestic landscapes of India. Reliable travel services for destinations across the country."
+                  keywords="india cab booking, taxi service, inter-city travel, tour packages india"
                   canonicalUrl="https://babajitravel.com/"
                 />
                 <HomePage />

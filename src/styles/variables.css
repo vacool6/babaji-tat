@@ -1,29 +1,31 @@
 /* CSS Variables */
 :root {
-  /* Colors */
-  --color-primary: #ff6b35;
-  --color-primary-dark: #e55a28;
-  --color-secondary: #1a2332;
-  --color-secondary-light: #2a3545;
+  /* Colors - Premium Indian Travel Aesthetic */
+  --color-primary: #123B35; /* Deep forest green */
+  --color-primary-dark: #0d2b27;
+  --color-primary-light: #1a5248;
+  --color-accent: #D86F45; /* Terracotta accent */
+  --color-accent-dark: #c4603a;
+  
+  --color-cream: #F7F5EF; /* Warm cream */
+  --color-white: #FFFFFF;
+  --color-charcoal: #1D2926; /* Charcoal text */
+  
+  --color-text-primary: #1D2926;
+  --color-text-secondary: #4a5654;
+  --color-text-light: #FFFFFF;
+  --color-text-muted: #7a8481;
 
-  --color-text-primary: #1a2332;
-  --color-text-secondary: #5a6c7d;
-  --color-text-light: #ffffff;
-  --color-text-muted: #8a9ba8;
+  --color-background: #FFFFFF;
+  --color-background-alt: #F7F5EF; /* Warm cream for alternating sections */
+  --color-background-dark: #123B35;
 
-  --color-background: #ffffff;
-  --color-background-light: #f8f9fa;
-  --color-background-dark: #1a2332;
-
-  --color-border: #e1e8ed;
-  --color-border-light: #f0f3f5;
+  --color-border: #e8e6e0;
+  --color-border-light: #f0eeea;
 
   /* Typography */
-  --font-family-primary:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  --font-family-heading:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
+  --font-family-primary: 'Inter', 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
+  --font-family-heading: 'Playfair Display', 'DM Serif Display', Georgia, serif;
 
   --font-size-xs: 0.75rem; /* 12px */
   --font-size-sm: 0.875rem; /* 14px */
@@ -31,9 +33,10 @@
   --font-size-lg: 1.125rem; /* 18px */
   --font-size-xl: 1.25rem; /* 20px */
   --font-size-2xl: 1.5rem; /* 24px */
-  --font-size-3xl: 2rem; /* 32px */
-  --font-size-4xl: 2.5rem; /* 40px */
+  --font-size-3xl: 1.875rem; /* 30px */
+  --font-size-4xl: 2.25rem; /* 36px */
   --font-size-5xl: 3rem; /* 48px */
+  --font-size-6xl: 3.75rem; /* 60px */
 
   --font-weight-normal: 400;
   --font-weight-medium: 500;
@@ -49,25 +52,32 @@
   --spacing-xl: 2rem; /* 32px */
   --spacing-2xl: 3rem; /* 48px */
   --spacing-3xl: 4rem; /* 64px */
+  --spacing-4xl: 5rem; /* 80px */
+  --spacing-5xl: 6rem; /* 96px */
 
   /* Border Radius */
-  --radius-sm: 0.25rem; /* 4px */
+  --radius-sm: 0.375rem; /* 6px */
   --radius-md: 0.5rem; /* 8px */
-  --radius-lg: 0.75rem; /* 12px */
-  --radius-xl: 1rem; /* 16px */
+  --radius-lg: 1.125rem; /* 18px */
+  --radius-xl: 1.5rem; /* 24px */
+  --radius-2xl: 2rem; /* 32px */
 
-  /* Shadows */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  /* Shadows - More sophisticated */
+  --shadow-sm: 0 1px 3px 0 rgba(18, 59, 53, 0.08);
+  --shadow-md: 0 4px 12px -2px rgba(18, 59, 53, 0.12);
+  --shadow-lg: 0 10px 24px -4px rgba(18, 59, 53, 0.15);
+  --shadow-xl: 0 20px 40px -8px rgba(18, 59, 53, 0.18);
+  --shadow-2xl: 0 25px 50px -12px rgba(18, 59, 53, 0.25);
 
   /* Transitions */
-  --transition-fast: 150ms ease;
-  --transition-base: 250ms ease;
-  --transition-slow: 350ms ease;
+  --transition-fast: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Layout */
-  --max-width-container: 1200px;
-  --navbar-height: 70px;
+  --max-width-container: 1280px;
+  --navbar-height: 80px;
 }
+
+/* Load Premium Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');

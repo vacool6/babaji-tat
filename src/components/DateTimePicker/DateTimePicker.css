@@ -12,7 +12,7 @@
 
 .datetime-icon {
   position: absolute;
-  left: var(--spacing-md);
+  left: var(--spacing-lg);
   color: var(--color-text-muted);
   pointer-events: none;
   display: flex;
@@ -32,17 +32,19 @@
 
 .datetime-input {
   width: 100%;
-  padding: 14px 16px 14px 48px;
+  padding: var(--spacing-md) var(--spacing-lg) var(--spacing-md) 50px;
   border: 1.5px solid var(--color-border);
   border-radius: var(--radius-md);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-base);
   transition: all var(--transition-fast);
   cursor: pointer;
-  background: var(--color-background);
+  background: var(--color-white);
   font-family: var(--font-family-primary);
   color: var(--color-text-primary);
   line-height: 1.5;
   box-sizing: border-box;
+  font-weight: var(--font-weight-medium);
+  min-height: 52px;
 }
 
 .datetime-input:hover {
@@ -52,7 +54,7 @@
 .datetime-input:focus {
   outline: none;
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+  box-shadow: 0 0 0 3px rgba(18, 59, 53, 0.1);
 }
 
 .datetime-input::placeholder {
@@ -62,32 +64,30 @@
 
 /* React DatePicker Custom Styles */
 .react-datepicker-popper {
-  z-index: 2;
+  z-index: 1000 !important;
 }
 
 .react-datepicker {
   font-family: var(--font-family-primary) !important;
   border: 1px solid var(--color-border) !important;
   border-radius: var(--radius-lg) !important;
-  box-shadow:
-    0 10px 40px rgba(0, 0, 0, 0.15),
-    0 0 0 1px rgba(0, 0, 0, 0.05) !important;
+  box-shadow: var(--shadow-xl) !important;
   overflow: hidden !important;
 }
 
 .react-datepicker__header {
-  background-color: var(--color-background) !important;
+  background-color: var(--color-background-alt) !important;
   border-bottom: 1px solid var(--color-border) !important;
   border-top-left-radius: var(--radius-lg) !important;
   border-top-right-radius: var(--radius-lg) !important;
-  padding-top: var(--spacing-md) !important;
-  padding-bottom: var(--spacing-sm) !important;
+  padding-top: var(--spacing-lg) !important;
+  padding-bottom: var(--spacing-md) !important;
 }
 
 .react-datepicker__current-month {
-  color: var(--color-text-primary) !important;
-  font-weight: var(--font-weight-semibold) !important;
-  font-size: var(--font-size-base) !important;
+  color: var(--color-primary) !important;
+  font-weight: var(--font-weight-bold) !important;
+  font-size: var(--font-size-lg) !important;
   margin-bottom: var(--spacing-sm) !important;
   padding-bottom: var(--spacing-xs) !important;
 }
@@ -101,17 +101,18 @@
 .react-datepicker__day-name {
   color: var(--color-text-secondary) !important;
   font-size: var(--font-size-xs) !important;
-  font-weight: var(--font-weight-semibold) !important;
+  font-weight: var(--font-weight-bold) !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.05em !important;
+  letter-spacing: 0.08em !important;
   width: 2.5rem !important;
   line-height: 2rem !important;
   margin: 0.166rem !important;
 }
 
 .react-datepicker__month {
-  margin: var(--spacing-sm) var(--spacing-md) !important;
+  margin: var(--spacing-md) var(--spacing-lg) !important;
   padding: var(--spacing-xs) 0 !important;
+  background: var(--color-white) !important;
 }
 
 .react-datepicker__week {
@@ -135,21 +136,22 @@
 }
 
 .react-datepicker__day:hover {
-  background-color: var(--color-background-light) !important;
+  background-color: var(--color-background-alt) !important;
   border-radius: var(--radius-md) !important;
   transform: scale(1.05) !important;
+  color: var(--color-primary) !important;
 }
 
 .react-datepicker__day--selected,
 .react-datepicker__day--keyboard-selected {
-  background-color: var(--color-primary) !important;
+  background-color: var(--color-accent) !important;
   color: white !important;
   font-weight: var(--font-weight-bold) !important;
-  box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3) !important;
+  box-shadow: 0 2px 8px rgba(216, 111, 69, 0.3) !important;
 }
 
 .react-datepicker__day--selected:hover {
-  background-color: var(--color-primary-dark) !important;
+  background-color: var(--color-accent-dark) !important;
   transform: scale(1.05) !important;
 }
 
@@ -163,16 +165,18 @@
 .react-datepicker__day--disabled:hover {
   transform: none !important;
   background-color: transparent !important;
+  color: var(--color-text-muted) !important;
 }
 
 .react-datepicker__day--today {
   font-weight: var(--font-weight-bold) !important;
   border: 2px solid var(--color-primary) !important;
-  background-color: rgba(255, 107, 53, 0.05) !important;
+  background-color: rgba(18, 59, 53, 0.08) !important;
+  color: var(--color-primary) !important;
 }
 
 .react-datepicker__day--today:hover {
-  background-color: rgba(255, 107, 53, 0.1) !important;
+  background-color: rgba(18, 59, 53, 0.12) !important;
 }
 
 .react-datepicker__day--outside-month {
@@ -274,19 +278,19 @@
 }
 
 .react-datepicker__time-list-item:hover {
-  background: var(--color-background-light) !important;
+  background: var(--color-background-alt) !important;
   color: var(--color-primary) !important;
   font-weight: var(--font-weight-medium) !important;
 }
 
 .react-datepicker__time-list-item--selected {
-  background-color: var(--color-primary) !important;
+  background-color: var(--color-accent) !important;
   color: white !important;
   font-weight: var(--font-weight-bold) !important;
 }
 
 .react-datepicker__time-list-item--selected:hover {
-  background-color: var(--color-primary-dark) !important;
+  background-color: var(--color-accent-dark) !important;
   color: white !important;
 }
 
@@ -343,24 +347,26 @@
 /* Custom Time Picker Inline Styles (inside datepicker) */
 .custom-time-picker-inline {
   border-left: 1px solid var(--color-border);
-  padding: var(--spacing-md);
-  background: var(--color-background);
-  min-width: 260px;
+  padding: var(--spacing-lg);
+  background: var(--color-white);
+  min-width: 280px;
 }
 
 .custom-time-header {
   font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text-primary);
-  margin-bottom: var(--spacing-md);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-lg);
   text-align: center;
-  padding-bottom: var(--spacing-sm);
-  border-bottom: 1px solid var(--color-border);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 2px solid var(--color-border-light);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .custom-time-selectors {
   display: flex;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-lg);
 }
 
 .time-selector-column {
@@ -370,38 +376,38 @@
 }
 
 .time-selector-label {
-  font-size: 10px;
-  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
   color: var(--color-text-secondary);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: var(--spacing-sm);
+  letter-spacing: 0.08em;
+  margin-bottom: var(--spacing-md);
   text-align: center;
 }
 
 .time-selector-options {
   display: flex;
   flex-direction: column;
-  gap: 3px;
-  background: var(--color-background-light);
-  border-radius: var(--radius-sm);
-  padding: 4px;
+  gap: var(--spacing-sm);
+  background: var(--color-background-alt);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm);
 }
 
 .time-selector-options.scrollable {
-  max-height: 200px;
+  max-height: 240px;
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--color-border) transparent;
 }
 
 .time-selector-options.scrollable::-webkit-scrollbar {
-  width: 5px;
+  width: 6px;
 }
 
 .time-selector-options.scrollable::-webkit-scrollbar-track {
   background: transparent;
-  margin: 2px 0;
+  margin: 4px 0;
 }
 
 .time-selector-options.scrollable::-webkit-scrollbar-thumb {
@@ -414,37 +420,39 @@
 }
 
 .time-option {
-  padding: 6px 8px;
+  padding: var(--spacing-md) var(--spacing-sm);
   border: none;
   background: transparent;
   color: var(--color-text-primary);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: all var(--transition-fast);
   text-align: center;
   font-family: var(--font-family-primary);
-  min-height: 28px;
+  min-height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .time-option:hover {
-  background: var(--color-background);
+  background: var(--color-white);
   color: var(--color-primary);
+  transform: translateX(2px);
 }
 
 .time-option.selected {
-  background: var(--color-primary);
-  color: white;
+  background: var(--color-accent);
+  color: var(--color-white);
   font-weight: var(--font-weight-bold);
-  box-shadow: 0 1px 3px rgba(255, 107, 53, 0.3);
+  box-shadow: var(--shadow-sm);
 }
 
 .time-option.selected:hover {
-  background: var(--color-primary-dark);
+  background: var(--color-accent-dark);
+  transform: translateX(0);
 }
 
 /* Make datepicker wider to accommodate time picker */
@@ -509,6 +517,16 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  .datetime-input {
+    font-size: var(--font-size-sm);
+    padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) 46px;
+    min-height: 50px;
+  }
+  
+  .datetime-icon {
+    left: var(--spacing-md);
+  }
+
   .react-datepicker {
     font-size: var(--font-size-sm) !important;
     flex-direction: column !important;
@@ -526,26 +544,38 @@
     min-width: 100%;
     border-left: none;
     border-top: 1px solid var(--color-border);
-    padding: var(--spacing-sm);
+    padding: var(--spacing-lg);
   }
 
   .custom-time-selectors {
-    gap: 6px;
+    gap: var(--spacing-md);
   }
 
   .time-option {
-    padding: 5px 6px;
-    font-size: 11px;
-    min-height: 24px;
+    padding: var(--spacing-sm);
+    font-size: var(--font-size-sm);
+    min-height: 42px;
   }
 
   .time-selector-options.scrollable {
-    max-height: 150px;
+    max-height: 180px;
   }
 
   .time-selector-label {
-    font-size: 9px;
-    margin-bottom: 4px;
+    font-size: 10px;
+    margin-bottom: var(--spacing-sm);
+  }
+}
+
+@media (max-width: 414px) {
+  .datetime-input {
+    min-height: 48px;
+  }
+}
+
+@media (max-width: 375px) {
+  .datetime-input {
+    font-size: var(--font-size-sm);
   }
 }
 

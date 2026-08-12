@@ -10,7 +10,7 @@ const Footer = () => {
             <h3 className="footer-title">Babaji Tour & Travel</h3>
             <p className="footer-description">
               Providing premium, reliable, and majestic travel experiences
-              across the beautiful landscapes of Uttarakhand. Your journey of a
+              across the beautiful landscapes of India. Your journey of a
               lifetime begins here.
             </p>
             <p className="footer-copyright">

@@ -14,35 +14,46 @@ const DestinationsSection = () => {
   const destinations: DestinationWithDescription[] = [
     {
       id: "1",
-      name: "Nainital",
-      location: "Lake District",
-      category: "Lake Destination",
+      name: "Goa",
+      location: "Beach Paradise",
+      category: "Beach & Nightlife",
       image:
-        "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800&q=80",
+        "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800&q=80",
       description:
-        "Nestled in the Kumaon foothills, Nainital is a picturesque hill station centered around the emerald Naini Lake. Known as the 'Lake District of India', it offers stunning views of snow-capped peaks, colonial-era architecture, and serene boat rides. Perfect for nature lovers and families seeking a peaceful mountain retreat.",
-      tourId: "1",
-    },
-    {
-      id: "2",
-      name: "Auli",
-      location: "Ski Destination",
-      category: "Mountain Sports",
-      image:
-        "https://images.unsplash.com/photo-1551582045-6ec9c11d8697?w=800&q=80",
-      description:
-        "Auli is a premier skiing destination offering panoramic views of the Himalayan peaks including Nanda Devi. With Asia's longest cable car, pristine ski slopes, and breathtaking alpine meadows, it's an adventure paradise. Experience winter sports, trekking, and witness some of the most spectacular sunrises in the mountains.",
+        "India's premier beach destination, Goa offers pristine shores, vibrant nightlife, and Portuguese heritage. Experience water sports, beach shacks, historic churches, and a laid-back coastal vibe.",
       tourId: "3",
     },
     {
-      id: "3",
-      name: "Jim Corbett",
-      location: "Wildlife Safari",
-      category: "National Park",
+      id: "2",
+      name: "Leh-Ladakh",
+      location: "Himalayan Adventure",
+      category: "Mountain & Lakes",
       image:
-        "https://images.unsplash.com/photo-1535083783855-76ae62b2914e?w=800&q=80",
+        "https://images.unsplash.com/photo-1506461883276-594a12b11cf3?w=800&q=80",
       description:
-        "India's oldest national park, Jim Corbett is a haven for wildlife enthusiasts. Home to the majestic Bengal tiger, diverse flora and fauna, and stunning landscapes, it offers thrilling jungle safaris. Explore dense forests, grasslands, and riverine habitats while experiencing the raw beauty of nature.",
+        "The land of high passes featuring stunning monasteries, crystal-clear lakes, and dramatic mountain landscapes. Experience the thrill of riding through the world's highest motorable roads.",
+      tourId: "10",
+    },
+    {
+      id: "3",
+      name: "Rajasthan",
+      location: "Royal Heritage",
+      category: "Culture & History",
+      image:
+        "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=800&q=80",
+      description:
+        "Explore magnificent forts, opulent palaces, and golden deserts. Discover the rich cultural tapestry through colorful markets, traditional cuisine, and royal heritage sites.",
+      tourId: "5",
+    },
+    {
+      id: "4",
+      name: "Kerala",
+      location: "God's Own Country",
+      category: "Backwaters & Hills",
+      image:
+        "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=800&q=80",
+      description:
+        "Serene backwaters, lush tea gardens, and pristine beaches. Experience traditional houseboats, ayurvedic treatments, and the tranquil beauty of South India's green paradise.",
       tourId: "4",
     },
   ];
@@ -54,10 +65,11 @@ const DestinationsSection = () => {
   return (
     <section className="destinations-section">
       <div className="section-header">
-        <h2 className="section-title">Popular Uttarakhand Destinations</h2>
+        <span className="eyebrow">Explore India</span>
+        <h2 className="section-title">Popular Destinations</h2>
         <p className="section-description">
-          Explore handpicked locations that offer the perfect blend of serenity,
-          adventure, and spiritual awakening.
+          Discover handpicked destinations across India that offer the perfect blend of culture,
+          adventure, heritage, and natural beauty.
         </p>
       </div>
 

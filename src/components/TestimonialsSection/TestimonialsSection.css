@@ -1,0 +1,195 @@
+.testimonials-section {
+  padding: var(--spacing-5xl) var(--spacing-xl);
+  background: var(--color-background-alt);
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonials-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: linear-gradient(180deg, var(--color-white) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.testimonials-container {
+  max-width: var(--max-width-container);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.testimonials-header {
+  max-width: 800px;
+  margin: 0 auto var(--spacing-4xl);
+  text-align: center;
+}
+
+.testimonials-header .eyebrow {
+  display: block;
+  margin-bottom: var(--spacing-md);
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--spacing-xl);
+}
+
+.testimonial-card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-2xl);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-base);
+  border: 2px solid transparent;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .testimonial-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--color-accent);
+  }
+}
+
+.quote-icon {
+  color: var(--color-accent);
+  opacity: 0.15;
+  position: absolute;
+  top: var(--spacing-lg);
+  right: var(--spacing-lg);
+}
+
+.rating {
+  display: flex;
+  gap: var(--spacing-xs);
+  color: #FFA500;
+}
+
+.testimonial-comment {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  flex: 1;
+  font-style: italic;
+}
+
+.testimonial-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding-top: var(--spacing-lg);
+  border-top: 2px solid var(--color-border-light);
+  flex-wrap: wrap;
+}
+
+.customer-info {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.customer-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-family-heading);
+  box-shadow: var(--shadow-sm);
+}
+
+.customer-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.customer-name {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  margin: 0;
+}
+
+.customer-location {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.trip-badge {
+  padding: var(--spacing-xs) var(--spacing-md);
+  background: var(--color-background-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  color: var(--color-accent);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .testimonials-section {
+    padding: var(--spacing-4xl) var(--spacing-lg);
+  }
+}
+
+@media (max-width: 768px) {
+  .testimonials-section {
+    padding: var(--spacing-3xl) var(--spacing-lg);
+  }
+
+  .testimonials-header {
+    margin-bottom: var(--spacing-3xl);
+  }
+
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .testimonial-card {
+    padding: var(--spacing-xl);
+  }
+
+  .testimonial-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+  }
+}
+
+@media (max-width: 414px) {
+  .testimonials-section {
+    padding: var(--spacing-2xl) var(--spacing-md);
+  }
+
+  .testimonial-card {
+    padding: var(--spacing-lg);
+  }
+
+  .customer-avatar {
+    width: 40px;
+    height: 40px;
+    font-size: var(--font-size-base);
+  }
+}
