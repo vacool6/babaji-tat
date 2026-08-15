@@ -2,18 +2,27 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { MapPin, Calendar } from "lucide-react";
 import VehicleCard from "../components/VehicleCard/VehicleCard";
 import type { Vehicle } from "../types/vehicle";
+import { useBooking } from "../context/BookingContext";
+import { useEffect } from "react";
 import "./CabResultsPage.css";
 
 const CabResultsPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { pickup, drop, dateTime, tripType, setTripDetails } = useBooking();
 
-  const { pickup, drop, dateTime, tripType } = location.state || {
-    pickup: "Delhi",
-    drop: "Nainital",
-    dateTime: "15 Oct 2024",
-    tripType: "One Way",
-  };
+  useEffect(() => {
+    // If trip details come from navigation state, save to context
+    if (location.state) {
+      setTripDetails({
+        pickup: location.state.pickup || "Delhi",
+        drop: location.state.drop || "Nainital",
+        dateTime: location.state.dateTime || new Date().toISOString(),
+        tripType: location.state.tripType || "One Way",
+        returnDateTime: location.state.returnDateTime,
+      });
+    }
+  }, [location.state, setTripDetails]);
 
   const vehicles: Vehicle[] = [
     {

@@ -16,6 +16,11 @@ body {
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+html {
+  overflow-x: hidden;
 }
 
 #app,
@@ -23,6 +28,8 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 /* Typography */
@@ -53,7 +60,12 @@ h2 {
 .section-title {
   font-size: var(--font-size-5xl);
   font-weight: 800;
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 60%, var(--color-accent) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-primary-dark) 60%,
+    var(--color-accent) 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -63,14 +75,19 @@ h2 {
 }
 
 .section-title::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   width: 80px;
   height: 4px;
-  background: linear-gradient(90deg, transparent 0%, var(--color-accent) 50%, transparent 100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-accent) 50%,
+    transparent 100%
+  );
   border-radius: var(--radius-sm);
 }
 
@@ -79,7 +96,7 @@ h2 {
   .section-title {
     font-size: var(--font-size-4xl);
   }
-  
+
   .section-title::after {
     width: 60px;
     height: 3px;
@@ -90,7 +107,7 @@ h2 {
   .section-title {
     font-size: var(--font-size-3xl);
   }
-  
+
   .section-title::after {
     width: 50px;
   }
@@ -214,35 +231,4 @@ input::placeholder {
 }
 .mb-4 {
   margin-bottom: var(--spacing-xl);
-}
-
-/* Animation utilities */
-@media (prefers-reduced-motion: no-preference) {
-  .animate-fade-in {
-    animation: fadeIn var(--transition-slow) ease-in;
-  }
-
-  .animate-slide-up {
-    animation: slideUp var(--transition-slow) ease-out;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
 }

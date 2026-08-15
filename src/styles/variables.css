@@ -1,31 +1,36 @@
+/* Load Premium Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap");
+
 /* CSS Variables */
 :root {
   /* Colors - Premium Indian Travel Aesthetic */
-  --color-primary: #123B35; /* Deep forest green */
+  --color-primary: #123b35; /* Deep forest green */
   --color-primary-dark: #0d2b27;
   --color-primary-light: #1a5248;
-  --color-accent: #D86F45; /* Terracotta accent */
+  --color-accent: #d86f45; /* Terracotta accent */
   --color-accent-dark: #c4603a;
-  
-  --color-cream: #F7F5EF; /* Warm cream */
-  --color-white: #FFFFFF;
-  --color-charcoal: #1D2926; /* Charcoal text */
-  
-  --color-text-primary: #1D2926;
+
+  --color-cream: #f7f5ef; /* Warm cream */
+  --color-white: #ffffff;
+  --color-charcoal: #1d2926; /* Charcoal text */
+
+  --color-text-primary: #1d2926;
   --color-text-secondary: #4a5654;
-  --color-text-light: #FFFFFF;
+  --color-text-light: #ffffff;
   --color-text-muted: #7a8481;
 
-  --color-background: #FFFFFF;
-  --color-background-alt: #F7F5EF; /* Warm cream for alternating sections */
-  --color-background-dark: #123B35;
+  --color-background: #ffffff;
+  --color-background-alt: #f7f5ef; /* Warm cream for alternating sections */
+  --color-background-dark: #123b35;
 
   --color-border: #e8e6e0;
   --color-border-light: #f0eeea;
 
   /* Typography */
-  --font-family-primary: 'Inter', 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
-  --font-family-heading: 'Playfair Display', 'DM Serif Display', Georgia, serif;
+  --font-family-primary:
+    "Inter", "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    sans-serif;
+  --font-family-heading: "Playfair Display", "DM Serif Display", Georgia, serif;
 
   --font-size-xs: 0.75rem; /* 12px */
   --font-size-sm: 0.875rem; /* 14px */
@@ -78,6 +83,3 @@
   --max-width-container: 1280px;
   --navbar-height: 80px;
 }
-
-/* Load Premium Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');

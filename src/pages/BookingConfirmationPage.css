@@ -330,18 +330,6 @@
   line-height: 1.5;
 }
 
-/* Responsive Design */
-@media (max-width: 1024px) {
-  .booking-confirmation-container {
-    grid-template-columns: 1fr;
-  }
-
-  .booking-summary-section {
-    position: static;
-    order: -1;
-  }
-}
-
 @media (max-width: 640px) {
   .booking-confirmation-page {
     padding: var(--spacing-lg) var(--spacing-sm);

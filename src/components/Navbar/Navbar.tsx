@@ -50,6 +50,14 @@ const Navbar = () => {
           </li>
           <li>
             <Link
+              to="/track-order"
+              className={isActive("/track-order") ? "active" : ""}
+            >
+              Track Booking
+            </Link>
+          </li>
+          <li>
+            <Link
               to="/contact"
               className={isActive("/contact") ? "active" : ""}
             >
