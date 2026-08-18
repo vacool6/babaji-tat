@@ -17,6 +17,7 @@ const DateTimePicker: React.FC<DateTimePickerProps> = ({
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [hour, setHour] = useState<number>(10);
   const [minute, setMinute] = useState<number>(0);
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleDateChange = (date: Date | null) => {
     if (!date) {
@@ -29,9 +30,10 @@ const DateTimePicker: React.FC<DateTimePickerProps> = ({
     newDate.setHours(hour, minute, 0, 0);
     setSelectedDate(newDate);
 
-    if (onChange) {
-      onChange(newDate.toISOString());
-    }
+    // Don't close the picker - let user select time
+    // if (onChange) {
+    //   onChange(newDate.toISOString());
+    // }
   };
 
   const handleTimeChange = (newHour?: number, newMinute?: number) => {
@@ -52,6 +54,15 @@ const DateTimePicker: React.FC<DateTimePickerProps> = ({
     }
   };
 
+  const handleConfirm = () => {
+    if (selectedDate && onChange) {
+      const finalDate = new Date(selectedDate);
+      finalDate.setHours(hour, minute, 0, 0);
+      onChange(finalDate.toISOString());
+      setIsOpen(false);
+    }
+  };
+
   const generateHours = () => {
     return Array.from({ length: 24 }, (_, i) => i);
   };
@@ -68,37 +79,26 @@ const DateTimePicker: React.FC<DateTimePickerProps> = ({
         <DatePicker
           selected={selectedDate}
           onChange={handleDateChange}
+          onClickOutside={() => setIsOpen(false)}
+          onCalendarClose={() => setIsOpen(false)}
+          onCalendarOpen={() => setIsOpen(true)}
+          open={isOpen}
           dateFormat="d MMM yyyy, HH:mm"
           minDate={new Date()}
           placeholderText={placeholder}
           className="datetime-input"
           wrapperClassName="datetime-wrapper"
           calendarClassName="datetime-calendar"
-          popperClassName="datetime-popper"
           autoComplete="off"
           showPopperArrow={false}
           popperPlacement="bottom-start"
-          popperModifiers={
-            [
-              {
-                name: "offset",
-                options: {
-                  offset: [0, 8],
-                },
-              },
-              {
-                name: "preventOverflow",
-                options: {
-                  rootBoundary: "viewport",
-                  tether: false,
-                  altAxis: true,
-                },
-              },
-            ] as any
-          }
+          onInputClick={() => setIsOpen(true)}
+          shouldCloseOnSelect={false}
         >
           <div className="custom-time-picker-inline">
-            <div className="custom-time-header">Select Time (24-hour format)</div>
+            <div className="custom-time-header">
+              Select Time (24-hour format)
+            </div>
             <div className="custom-time-selectors">
               {/* Hour Selector */}
               <div className="time-selector-column">
@@ -107,8 +107,12 @@ const DateTimePicker: React.FC<DateTimePickerProps> = ({
                   {generateHours().map((h) => (
                     <button
                       key={h}
+                      type="button"
                       className={`time-option ${hour === h ? "selected" : ""}`}
-                      onClick={() => handleTimeChange(h, undefined)}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleTimeChange(h, undefined);
+                      }}
                     >
                       {h.toString().padStart(2, "0")}:00
                     </button>
@@ -123,14 +127,31 @@ const DateTimePicker: React.FC<DateTimePickerProps> = ({
                   {generateMinutes().map((m) => (
                     <button
                       key={m}
+                      type="button"
                       className={`time-option ${minute === m ? "selected" : ""}`}
-                      onClick={() => handleTimeChange(undefined, m)}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleTimeChange(undefined, m);
+                      }}
                     >
                       :{m.toString().padStart(2, "0")}
                     </button>
                   ))}
                 </div>
               </div>
+            </div>
+            <div className="custom-time-footer">
+              <button
+                type="button"
+                className="time-confirm-btn"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleConfirm();
+                }}
+                disabled={!selectedDate}
+              >
+                Confirm Date & Time
+              </button>
             </div>
           </div>
         </DatePicker>

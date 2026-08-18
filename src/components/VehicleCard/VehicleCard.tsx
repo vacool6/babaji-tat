@@ -7,9 +7,16 @@ import "./VehicleCard.css";
 interface VehicleCardProps {
   vehicle: Vehicle;
   onSelect?: (vehicleId: string) => void;
+  perKmRate?: number;
+  distance?: number;
 }
 
-const VehicleCard = ({ vehicle, onSelect }: VehicleCardProps) => {
+const VehicleCard = ({
+  vehicle,
+  onSelect,
+  perKmRate = 0,
+  distance = 0,
+}: VehicleCardProps) => {
   const navigate = useNavigate();
   const { setSelectedVehicle } = useBooking();
 
@@ -45,9 +52,21 @@ const VehicleCard = ({ vehicle, onSelect }: VehicleCardProps) => {
               <p className="vehicle-category">
                 {vehicle.category} • {vehicle.features.join(" • ")}
               </p>
+              {perKmRate > 0 && distance > 0 && (
+                <p className="vehicle-rate">
+                  ₹{perKmRate}/km • {distance.toFixed(1)} km
+                </p>
+              )}
             </div>
             <div className="vehicle-price">
-              ₹{vehicle.price.toLocaleString()}
+              <div className="price-amount">
+                {distance > 0 && perKmRate > 0
+                  ? `₹${vehicle.price.toLocaleString()}`
+                  : "₹--"}
+              </div>
+              {perKmRate > 0 && distance > 0 && (
+                <div className="price-label">Total Fare</div>
+              )}
             </div>
           </div>
 
@@ -63,8 +82,12 @@ const VehicleCard = ({ vehicle, onSelect }: VehicleCardProps) => {
           </div>
         </div>
 
-        <button className="select-vehicle-btn" onClick={handleSelect}>
-          Proceed to Book
+        <button
+          className="select-vehicle-btn"
+          onClick={handleSelect}
+          disabled={distance === 0}
+        >
+          {distance === 0 ? "Calculating..." : "Proceed to Book"}
           <ArrowRight size={18} />
         </button>
       </div>

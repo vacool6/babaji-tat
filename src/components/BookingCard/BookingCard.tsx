@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MapPin, Navigation, Calendar, ArrowRight } from "lucide-react";
 import DateTimePicker from "../DateTimePicker/DateTimePicker";
-import LocationPicker, { LocationData } from "../LocationPicker/LocationPicker";
+import LocationPicker from "../LocationPicker/LocationPicker";
 import { useBooking } from "../../context/BookingContext";
 import "./BookingCard.css";
 
@@ -13,10 +13,16 @@ const BookingCard = () => {
   const [tripType, setTripType] = useState<"one-way" | "round-trip">("one-way");
   const [pickup, setPickup] = useState("");
   const [drop, setDrop] = useState("");
-  const [pickupLocation, setPickupLocation] = useState<LocationData | null>(
-    null,
-  );
-  const [dropLocation, setDropLocation] = useState<LocationData | null>(null);
+  const [pickupLocation, setPickupLocation] = useState<{
+    address: string;
+    lat: number;
+    lng: number;
+  } | null>(null);
+  const [dropLocation, setDropLocation] = useState<{
+    address: string;
+    lat: number;
+    lng: number;
+  } | null>(null);
   const [dateTime, setDateTime] = useState("");
   const [isPickupPickerOpen, setIsPickupPickerOpen] = useState(false);
   const [isDropPickerOpen, setIsDropPickerOpen] = useState(false);
@@ -24,6 +30,11 @@ const BookingCard = () => {
   const handleSearch = () => {
     if (!pickup || !drop || !dateTime) {
       alert("Please fill all fields");
+      return;
+    }
+
+    if (!pickupLocation || !dropLocation) {
+      alert("Please select valid pickup and drop locations with coordinates");
       return;
     }
 
@@ -37,9 +48,16 @@ const BookingCard = () => {
       tripType,
     });
 
-    // Navigate to results page
+    // Navigate to results page with location data
     navigate("/search-results", {
-      state: { pickup, drop, dateTime, tripType },
+      state: {
+        pickup,
+        drop,
+        pickupLocation,
+        dropLocation,
+        dateTime,
+        tripType,
+      },
     });
   };
 
@@ -51,14 +69,22 @@ const BookingCard = () => {
     }
   };
 
-  const handlePickupConfirm = (location: LocationData) => {
+  const handlePickupSelect = (location: {
+    address: string;
+    lat: number;
+    lng: number;
+  }) => {
     setPickupLocation(location);
-    setPickup(location.displayName || location.address);
+    setPickup(location.address);
   };
 
-  const handleDropConfirm = (location: LocationData) => {
+  const handleDropSelect = (location: {
+    address: string;
+    lat: number;
+    lng: number;
+  }) => {
     setDropLocation(location);
-    setDrop(location.displayName || location.address);
+    setDrop(location.address);
   };
 
   return (
@@ -159,16 +185,16 @@ const BookingCard = () => {
       <LocationPicker
         isOpen={isPickupPickerOpen}
         onClose={() => setIsPickupPickerOpen(false)}
-        onConfirm={handlePickupConfirm}
-        title="Pickup Location"
+        onSelectLocation={handlePickupSelect}
+        title="Select Pickup Location"
         initialLocation={pickupLocation || undefined}
       />
 
       <LocationPicker
         isOpen={isDropPickerOpen}
         onClose={() => setIsDropPickerOpen(false)}
-        onConfirm={handleDropConfirm}
-        title="Drop Location"
+        onSelectLocation={handleDropSelect}
+        title="Select Drop Location"
         initialLocation={dropLocation || undefined}
       />
     </>

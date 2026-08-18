@@ -51,36 +51,6 @@ serve(async (req) => {
 
     const bookingReference = refData;
 
-    // Create booking in database
-    const { data: booking, error: bookingError } = await supabaseClient
-      .from("bookings")
-      .insert({
-        booking_reference: bookingReference,
-        pickup_location: bookingData.pickupLocation,
-        drop_location: bookingData.dropLocation,
-        trip_type: bookingData.tripType,
-        pickup_datetime: bookingData.pickupDateTime,
-        return_datetime: bookingData.returnDateTime,
-        vehicle_id: bookingData.vehicleId,
-        vehicle_name: bookingData.vehicleName,
-        vehicle_category: bookingData.vehicleCategory,
-        vehicle_seats: bookingData.vehicleSeats,
-        customer_name: bookingData.customerName,
-        customer_email: bookingData.customerEmail,
-        customer_phone: bookingData.customerPhone,
-        customer_alternate_phone: bookingData.customerAlternatePhone,
-        pickup_address: bookingData.pickupAddress,
-        special_instructions: bookingData.specialInstructions,
-        base_price: bookingData.basePrice,
-        total_price: bookingData.totalPrice,
-        payment_status: "pending",
-        booking_status: "pending",
-      })
-      .select()
-      .single();
-
-    if (bookingError) throw bookingError;
-
     // Initialize Razorpay Order (you'll need to add your Razorpay credentials)
     const razorpayKeyId = Deno.env.get("RAZORPAY_KEY_ID");
     const razorpayKeySecret = Deno.env.get("RAZORPAY_KEY_SECRET");
@@ -89,7 +59,7 @@ serve(async (req) => {
       throw new Error("Razorpay credentials not configured");
     }
 
-    // Create Razorpay order
+    // Create Razorpay order FIRST (before creating booking)
     const razorpayOrder = await fetch("https://api.razorpay.com/v1/orders", {
       method: "POST",
       headers: {
@@ -101,7 +71,7 @@ serve(async (req) => {
         currency: "INR",
         receipt: bookingReference,
         notes: {
-          booking_id: booking.id,
+          booking_reference: bookingReference,
           customer_email: bookingData.customerEmail,
           customer_phone: bookingData.customerPhone,
         },
@@ -116,26 +86,19 @@ serve(async (req) => {
       );
     }
 
-    // Store payment transaction
-    await supabaseClient.from("payment_transactions").insert({
-      booking_id: booking.id,
-      transaction_id: razorpayOrderData.id,
-      payment_gateway: "razorpay",
-      amount: bookingData.totalPrice,
-      status: "initiated",
-      gateway_response: razorpayOrderData,
-    });
+    // Store booking data temporarily in order notes for later creation
+    // Booking will be created ONLY after successful payment in verify-payment handler
 
     // Return response
     return new Response(
       JSON.stringify({
         success: true,
-        bookingId: booking.id,
         bookingReference: bookingReference,
         orderId: razorpayOrderData.id,
         amount: bookingData.totalPrice,
         currency: "INR",
         razorpayKeyId: razorpayKeyId,
+        bookingData: bookingData, // Send booking data to frontend for verification handler
       }),
       {
         headers: { ...corsHeaders, "Content-Type": "application/json" },

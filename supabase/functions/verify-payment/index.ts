@@ -13,7 +13,12 @@ interface VerifyPaymentRequest {
   razorpayOrderId: string;
   razorpayPaymentId: string;
   razorpaySignature: string;
-  bookingId: string;
+  bookingReference: string;
+  bookingData: any; // Booking details from create-payment
+  // For price verification
+  vehicleCategory: string;
+  distance: number;
+  frontendCalculatedPrice: number;
 }
 
 serve(async (req) => {
@@ -31,8 +36,45 @@ serve(async (req) => {
       razorpayOrderId,
       razorpayPaymentId,
       razorpaySignature,
-      bookingId,
+      bookingReference,
+      bookingData,
+      vehicleCategory,
+      distance,
+      frontendCalculatedPrice,
     }: VerifyPaymentRequest = await req.json();
+
+    // Step 1: Verify price on backend (prevent manipulation)
+    const { data: pricingData, error: pricingError } = await supabaseClient
+      .from("vehicle_pricing")
+      .select("*")
+      .eq("vehicle_category", vehicleCategory)
+      .single();
+
+    if (pricingError || !pricingData) {
+      throw new Error("Invalid vehicle category or pricing not found");
+    }
+
+    // Calculate expected price on backend
+    const { base_fare, per_km_rate, minimum_km } = pricingData;
+    let expectedPrice = base_fare;
+
+    if (distance > minimum_km) {
+      const billableDistance = distance - minimum_km;
+      expectedPrice = base_fare + billableDistance * per_km_rate;
+    }
+
+    expectedPrice = Math.round(expectedPrice);
+
+    // Allow 1% tolerance for rounding differences
+    const priceTolerance = expectedPrice * 0.01;
+    if (Math.abs(frontendCalculatedPrice - expectedPrice) > priceTolerance) {
+      console.error(
+        `Price mismatch: Frontend ${frontendCalculatedPrice}, Backend ${expectedPrice}`,
+      );
+      throw new Error(
+        `Price verification failed. Expected: ₹${expectedPrice}, Received: ₹${frontendCalculatedPrice}`,
+      );
+    }
 
     const razorpayKeySecret = Deno.env.get("RAZORPAY_KEY_SECRET");
 
@@ -63,30 +105,51 @@ serve(async (req) => {
 
     const paymentDetails = await paymentDetailsResponse.json();
 
-    // Update booking with payment details
-    const { error: updateError } = await supabaseClient
+    // NOW create the booking - only after successful payment
+    const { data: booking, error: bookingError } = await supabaseClient
       .from("bookings")
-      .update({
+      .insert({
+        booking_reference: bookingReference,
+        pickup_location: bookingData.pickupLocation,
+        drop_location: bookingData.dropLocation,
+        trip_type: bookingData.tripType,
+        pickup_datetime: bookingData.pickupDateTime,
+        return_datetime: bookingData.returnDateTime,
+        vehicle_id: bookingData.vehicleId,
+        vehicle_name: bookingData.vehicleName,
+        vehicle_category: bookingData.vehicleCategory,
+        vehicle_seats: bookingData.vehicleSeats,
+        customer_name: bookingData.customerName,
+        customer_email: bookingData.customerEmail,
+        customer_phone: bookingData.customerPhone,
+        customer_alternate_phone: bookingData.customerAlternatePhone,
+        pickup_address: bookingData.pickupAddress,
+        special_instructions: bookingData.specialInstructions,
+        base_price: bookingData.basePrice,
+        total_price: bookingData.totalPrice,
         payment_status: "paid",
         payment_id: razorpayPaymentId,
         payment_method: paymentDetails.method,
         payment_gateway: "razorpay",
-        paid_amount: paymentDetails.amount / 100, // Convert from paise to rupees
+        paid_amount: paymentDetails.amount / 100,
         payment_date: new Date().toISOString(),
         booking_status: "confirmed",
       })
-      .eq("id", bookingId);
+      .select()
+      .single();
 
-    if (updateError) throw updateError;
+    if (bookingError) throw bookingError;
 
-    // Update payment transaction
-    await supabaseClient
-      .from("payment_transactions")
-      .update({
-        status: "success",
-        gateway_response: paymentDetails,
-      })
-      .eq("transaction_id", razorpayOrderId);
+    // Store payment transaction
+    await supabaseClient.from("payment_transactions").insert({
+      booking_id: booking.id,
+      transaction_id: razorpayOrderId,
+      payment_gateway: "razorpay",
+      amount: paymentDetails.amount / 100,
+      status: "success",
+      payment_method: paymentDetails.method,
+      gateway_response: paymentDetails,
+    });
 
     // TODO: Send confirmation email/SMS to customer
 

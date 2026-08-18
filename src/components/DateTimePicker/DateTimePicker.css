@@ -65,6 +65,16 @@
 /* React DatePicker Custom Styles */
 .react-datepicker-popper {
   z-index: 1000 !important;
+  transform: translate(0px, 8px) !important;
+}
+
+.react-datepicker-popper[data-placement^="bottom"] {
+  padding-top: 8px !important;
+}
+
+.react-datepicker-popper[data-placement^="top"] {
+  padding-top: 8px !important;
+  transform: translate(0px, 8px) !important;
 }
 
 .react-datepicker {
@@ -522,7 +532,7 @@
     padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) 46px;
     min-height: 50px;
   }
-  
+
   .datetime-icon {
     left: var(--spacing-md);
   }
@@ -587,4 +597,38 @@
     border-color: var(--color-border-dark) !important;
   }
   */
+}
+
+/* Confirm Button */
+.custom-time-footer {
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--color-border-light);
+}
+
+.time-confirm-btn {
+  width: 100%;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: linear-gradient(135deg, #ff6b35 0%, #e85a25 100%);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  font-family: var(--font-family-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.time-confirm-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
+}
+
+.time-confirm-btn:disabled {
+  background: linear-gradient(135deg, #d1d5db 0%, #9ca3af 100%);
+  cursor: not-allowed;
+  opacity: 0.6;
 }

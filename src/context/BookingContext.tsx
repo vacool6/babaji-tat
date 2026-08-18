@@ -3,9 +3,14 @@ import type { Vehicle } from "../types/vehicle";
 
 export interface LocationData {
   address: string;
-  latitude: number;
-  longitude: number;
-  displayName?: string;
+  lat: number;
+  lng: number;
+}
+
+interface TripDistance {
+  distance: number;
+  distanceText: string;
+  durationText: string;
 }
 
 interface BookingContextType {
@@ -17,6 +22,10 @@ interface BookingContextType {
   dateTime: string;
   tripType: string;
   returnDateTime?: string;
+
+  // Distance Info
+  tripDistance: TripDistance | null;
+  setTripDistance: (distance: TripDistance | null) => void;
 
   // Selected Vehicle
   selectedVehicle: Vehicle | null;
@@ -40,17 +49,50 @@ interface BookingContextType {
 const BookingContext = createContext<BookingContextType | undefined>(undefined);
 
 export const BookingProvider = ({ children }: { children: ReactNode }) => {
-  const [pickup, setPickup] = useState("");
-  const [drop, setDrop] = useState("");
+  // Initialize state from localStorage or defaults
+  const [pickup, setPickup] = useState(() => {
+    const saved = localStorage.getItem("booking_pickup");
+    return saved || "";
+  });
+  const [drop, setDrop] = useState(() => {
+    const saved = localStorage.getItem("booking_drop");
+    return saved || "";
+  });
   const [pickupLocation, setPickupLocation] = useState<LocationData | null>(
-    null,
+    () => {
+      const saved = localStorage.getItem("booking_pickupLocation");
+      return saved ? JSON.parse(saved) : null;
+    },
   );
-  const [dropLocation, setDropLocation] = useState<LocationData | null>(null);
-  const [dateTime, setDateTime] = useState("");
-  const [tripType, setTripType] = useState("");
-  const [returnDateTime, setReturnDateTime] = useState<string | undefined>();
+  const [dropLocation, setDropLocation] = useState<LocationData | null>(() => {
+    const saved = localStorage.getItem("booking_dropLocation");
+    return saved ? JSON.parse(saved) : null;
+  });
+  const [dateTime, setDateTime] = useState(() => {
+    const saved = localStorage.getItem("booking_dateTime");
+    return saved || "";
+  });
+  const [tripType, setTripType] = useState(() => {
+    const saved = localStorage.getItem("booking_tripType");
+    return saved || "";
+  });
+  const [returnDateTime, setReturnDateTime] = useState<string | undefined>(
+    () => {
+      const saved = localStorage.getItem("booking_returnDateTime");
+      return saved || undefined;
+    },
+  );
+  const [tripDistance, setTripDistanceState] = useState<TripDistance | null>(
+    () => {
+      const saved = localStorage.getItem("booking_tripDistance");
+      return saved ? JSON.parse(saved) : null;
+    },
+  );
   const [selectedVehicle, setSelectedVehicleState] = useState<Vehicle | null>(
-    null,
+    () => {
+      const saved = localStorage.getItem("booking_selectedVehicle");
+      return saved ? JSON.parse(saved) : null;
+    },
   );
 
   const setTripDetails = (details: {
@@ -69,10 +111,37 @@ export const BookingProvider = ({ children }: { children: ReactNode }) => {
     setDateTime(details.dateTime);
     setTripType(details.tripType);
     setReturnDateTime(details.returnDateTime);
+
+    // Persist to localStorage
+    localStorage.setItem("booking_pickup", details.pickup);
+    localStorage.setItem("booking_drop", details.drop);
+    localStorage.setItem(
+      "booking_pickupLocation",
+      JSON.stringify(details.pickupLocation),
+    );
+    localStorage.setItem(
+      "booking_dropLocation",
+      JSON.stringify(details.dropLocation),
+    );
+    localStorage.setItem("booking_dateTime", details.dateTime);
+    localStorage.setItem("booking_tripType", details.tripType);
+    if (details.returnDateTime) {
+      localStorage.setItem("booking_returnDateTime", details.returnDateTime);
+    }
+  };
+
+  const setTripDistance = (distance: TripDistance | null) => {
+    setTripDistanceState(distance);
+    if (distance) {
+      localStorage.setItem("booking_tripDistance", JSON.stringify(distance));
+    } else {
+      localStorage.removeItem("booking_tripDistance");
+    }
   };
 
   const setSelectedVehicle = (vehicle: Vehicle) => {
     setSelectedVehicleState(vehicle);
+    localStorage.setItem("booking_selectedVehicle", JSON.stringify(vehicle));
   };
 
   const clearBooking = () => {
@@ -83,7 +152,19 @@ export const BookingProvider = ({ children }: { children: ReactNode }) => {
     setDateTime("");
     setTripType("");
     setReturnDateTime(undefined);
+    setTripDistanceState(null);
     setSelectedVehicleState(null);
+
+    // Clear localStorage
+    localStorage.removeItem("booking_pickup");
+    localStorage.removeItem("booking_drop");
+    localStorage.removeItem("booking_pickupLocation");
+    localStorage.removeItem("booking_dropLocation");
+    localStorage.removeItem("booking_dateTime");
+    localStorage.removeItem("booking_tripType");
+    localStorage.removeItem("booking_returnDateTime");
+    localStorage.removeItem("booking_tripDistance");
+    localStorage.removeItem("booking_selectedVehicle");
   };
 
   return (
@@ -96,6 +177,8 @@ export const BookingProvider = ({ children }: { children: ReactNode }) => {
         dateTime,
         tripType,
         returnDateTime,
+        tripDistance,
+        setTripDistance,
         selectedVehicle,
         setTripDetails,
         setSelectedVehicle,

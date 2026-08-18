@@ -30,8 +30,15 @@ interface PaymentResult {
 
 const BookingFormPage = () => {
   const navigate = useNavigate();
-  const { pickup, drop, dateTime, tripType, returnDateTime, selectedVehicle } =
-    useBooking();
+  const {
+    pickup,
+    drop,
+    dateTime,
+    tripType,
+    returnDateTime,
+    selectedVehicle,
+    tripDistance,
+  } = useBooking();
   const vehicle = selectedVehicle;
 
   const [formData, setFormData] = useState({
@@ -212,7 +219,12 @@ const BookingFormPage = () => {
                 razorpayOrderId: response.razorpay_order_id,
                 razorpayPaymentId: response.razorpay_payment_id,
                 razorpaySignature: response.razorpay_signature,
-                bookingId: data.bookingId,
+                bookingReference: data.bookingReference,
+                bookingData: data.bookingData,
+                // Add price verification params
+                vehicleCategory: vehicle.category,
+                distance: tripDistance?.distance || 0,
+                frontendCalculatedPrice: vehicle.price,
               }),
             });
 
@@ -222,7 +234,7 @@ const BookingFormPage = () => {
               setPaymentResult({
                 success: true,
                 bookingReference: data.bookingReference,
-                bookingId: data.bookingId,
+                bookingId: verifyData.bookingId,
                 paymentId: response.razorpay_payment_id,
                 message: "Your booking has been confirmed successfully!",
               });
@@ -230,7 +242,9 @@ const BookingFormPage = () => {
             } else {
               setPaymentResult({
                 success: false,
-                message: "Payment verification failed. Please contact support.",
+                message:
+                  verifyData.error ||
+                  "Payment verification failed. Please contact support.",
               });
               setIsSubmitting(false);
             }

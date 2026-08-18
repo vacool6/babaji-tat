@@ -18,16 +18,14 @@
     "vite": "^8.2.0"
   },
   "dependencies": {
+    "@react-google-maps/api": "^2.20.8",
     "@supabase/supabase-js": "^2.112.3",
-    "@types/leaflet": "^1.9.22",
     "flatpickr": "^4.6.13",
-    "leaflet": "^1.9.4",
     "lucide": "^1.30.0",
     "lucide-react": "^1.30.0",
     "react": "^19.2.8",
     "react-datepicker": "^9.1.0",
     "react-dom": "^19.2.8",
-    "react-leaflet": "^5.0.0",
     "react-router-dom": "^7.18.2"
   }
 }

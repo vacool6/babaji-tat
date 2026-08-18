@@ -85,11 +85,29 @@
   font-weight: 500;
 }
 
+.vehicle-rate {
+  font-size: 13px;
+  color: #3498db;
+  margin: 4px 0 0 0;
+  font-weight: 600;
+}
+
 .vehicle-price {
+  text-align: right;
+}
+
+.price-amount {
   font-size: 32px;
   font-weight: 700;
   color: #ff6b35;
   white-space: nowrap;
+}
+
+.price-label {
+  font-size: 12px;
+  color: #95a5a6;
+  font-weight: 500;
+  margin-top: 4px;
 }
 
 .vehicle-specs {
@@ -133,10 +151,18 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.select-vehicle-btn:hover {
+.select-vehicle-btn:hover:not(:disabled) {
   background: #e85a25;
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.select-vehicle-btn:disabled {
+  background: #d1d5db;
+  color: #9ca3af;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 .select-vehicle-btn svg {
