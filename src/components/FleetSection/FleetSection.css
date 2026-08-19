@@ -23,7 +23,7 @@
 .vehicles-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: var(--spacing-lg);
+  gap: var(--spacing-2xl);
   margin-bottom: var(--spacing-4xl);
   align-items: stretch;
 }
@@ -37,6 +37,7 @@
   border: 2px solid var(--color-border-light);
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -75,18 +76,24 @@
 
 .vehicle-type-badge {
   position: absolute;
-  top: var(--spacing-md);
-  right: var(--spacing-md);
-  background: var(--color-accent);
+  top: 8px;
+  right: 8px;
+  background: linear-gradient(135deg, var(--color-accent), #e87d52);
   color: var(--color-white);
-  padding: var(--spacing-xs) var(--spacing-md);
-  border-radius: var(--radius-sm);
-  font-size: var(--font-size-xs);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 9px;
   font-weight: var(--font-weight-bold);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  box-shadow: var(--shadow-md);
-  z-index: 1;
+  letter-spacing: 0.05em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  line-height: 1.2;
+  text-align: center;
+  z-index: 10;
+  white-space: nowrap;
+  max-width: 80%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .vehicle-info {

@@ -9,6 +9,8 @@ import TestimonialsSection from "../components/TestimonialsSection/TestimonialsS
 import {
   getLocalBusinessSchema,
   getCabServiceSchema,
+  getFAQSchema,
+  getBreadcrumbSchema,
   injectStructuredData,
 } from "../utils/seo";
 
@@ -19,17 +21,21 @@ const HomePage = () => {
     // Clear booking form on homepage load
     clearBooking();
 
-    // Inject structured data for SEO
+    // Inject all structured data for comprehensive SEO
     const businessSchema = getLocalBusinessSchema();
     const serviceSchema = getCabServiceSchema();
+    const faqSchema = getFAQSchema();
+    const breadcrumbSchema = getBreadcrumbSchema([
+      { name: "Home", url: "https://www.babajitravels.com/" }
+    ]);
 
-    injectStructuredData(businessSchema);
-
-    // Add service schema as well
-    const script = document.createElement("script");
-    script.type = "application/ld+json";
-    script.text = JSON.stringify(serviceSchema);
-    document.head.appendChild(script);
+    // Inject all schemas at once
+    injectStructuredData([
+      businessSchema,
+      serviceSchema,
+      faqSchema,
+      breadcrumbSchema
+    ]);
 
     return () => {
       // Cleanup structured data on unmount

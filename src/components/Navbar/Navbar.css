@@ -39,6 +39,77 @@
 
 .logo-text {
   display: inline-block;
+  position: relative;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent), var(--color-primary));
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: divineGlow 4s ease-in-out infinite;
+}
+
+.logo-text::before {
+  content: "ॐ";
+  position: absolute;
+  left: -28px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2em;
+  background: linear-gradient(135deg, #ff9933, #ffcc00, #ff9933);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 0.7;
+  animation: omPulse 3s ease-in-out infinite;
+}
+
+.logo-text::after {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  background: radial-gradient(circle, rgba(255, 153, 51, 0.15), transparent 70%);
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.navbar-logo a:hover .logo-text::after {
+  opacity: 1;
+  animation: divineAura 2s ease-in-out infinite;
+}
+
+@keyframes divineGlow {
+  0%, 100% {
+    background-position: 0% 50%;
+    filter: brightness(1);
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: brightness(1.2);
+  }
+}
+
+@keyframes omPulse {
+  0%, 100% {
+    transform: translateY(-50%) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-50%) scale(1.1);
+    opacity: 1;
+  }
+}
+
+@keyframes divineAura {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.6;
+  }
 }
 
 .navbar-menu {

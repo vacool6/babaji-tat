@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Search,
   Package,
@@ -8,6 +8,13 @@ import {
   Car,
   User,
   CreditCard,
+  MapPin,
+  Clock,
+  CheckCircle,
+  XCircle,
+  Loader,
+  AlertCircle,
+  RefreshCw,
 } from "lucide-react";
 import { supabase } from "../supabase/client";
 import type { Booking } from "../types/booking";
@@ -22,6 +29,21 @@ const TrackOrderPage = () => {
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [autoRefresh, setAutoRefresh] = useState(false);
+
+  // Auto-refresh booking status every 30 seconds if enabled
+  useEffect(() => {
+    if (autoRefresh && (booking || bookings.length > 0)) {
+      const interval = setInterval(() => {
+        if (searchValue) {
+          const fakeEvent = { preventDefault: () => {} } as React.FormEvent;
+          handleSearch(fakeEvent);
+        }
+      }, 30000);
+
+      return () => clearInterval(interval);
+    }
+  }, [autoRefresh, booking, bookings, searchValue]);
 
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -129,6 +151,53 @@ const TrackOrderPage = () => {
     }
   };
 
+  const getBookingStatusInfo = (status: string) => {
+    const statusMap: Record<
+      string,
+      { label: string; color: string; icon: any; bgColor: string }
+    > = {
+      pending: {
+        label: "Pending Confirmation",
+        color: "#f59e0b",
+        icon: Clock,
+        bgColor: "#fef3c7",
+      },
+      confirmed: {
+        label: "Confirmed",
+        color: "#3b82f6",
+        icon: CheckCircle,
+        bgColor: "#dbeafe",
+      },
+      in_progress: {
+        label: "In Progress",
+        color: "#8b5cf6",
+        icon: Loader,
+        bgColor: "#ede9fe",
+      },
+      completed: {
+        label: "Completed",
+        color: "#10b981",
+        icon: CheckCircle,
+        bgColor: "#d1fae5",
+      },
+      cancelled: {
+        label: "Cancelled",
+        color: "#ef4444",
+        icon: XCircle,
+        bgColor: "#fee2e2",
+      },
+    };
+
+    return (
+      statusMap[status] || {
+        label: status,
+        color: "#95a5a6",
+        icon: AlertCircle,
+        bgColor: "#f3f4f6",
+      }
+    );
+  };
+
   return (
     <div className="track-order-page">
       <div className="track-container">
@@ -186,26 +255,33 @@ const TrackOrderPage = () => {
         </div>
 
         {booking && (
-          <div className="booking-card">
-            <div className="booking-card-header">
-              <div>
-                <h3 className="booking-ref-title">
-                  #{booking.bookingReference}
-                </h3>
-                <p className="booking-route">
-                  {booking.pickupLocation} → {booking.dropLocation}
-                </p>
+          <div className="booking-card magical-card">
+            <div className="booking-card-header-enhanced">
+              <div className="booking-ref-display">
+                <span className="ref-label">Booking Reference</span>
+                <div className="ref-number-display">
+                  <Package size={24} className="ref-icon" />
+                  <span className="ref-number">{booking.bookingReference}</span>
+                </div>
               </div>
-              <div className="badges">
-                <span
-                  className="badge"
-                  style={{
-                    background: getTripTimingBadge(booking.pickupDatetime)
-                      .color,
-                  }}
-                >
-                  {getTripTimingBadge(booking.pickupDatetime).label}
-                </span>
+              <div className="status-badges-enhanced">
+                {(() => {
+                  const statusInfo = getBookingStatusInfo(booking.bookingStatus);
+                  const StatusIcon = statusInfo.icon;
+                  return (
+                    <div
+                      className="status-badge-large"
+                      style={{
+                        backgroundColor: statusInfo.bgColor,
+                        color: statusInfo.color,
+                        borderColor: statusInfo.color,
+                      }}
+                    >
+                      <StatusIcon size={20} />
+                      <span>{statusInfo.label}</span>
+                    </div>
+                  );
+                })()}
                 <span
                   className="badge"
                   style={{
@@ -215,6 +291,34 @@ const TrackOrderPage = () => {
                   {booking.paymentStatus.toUpperCase()}
                 </span>
               </div>
+            </div>
+
+            <div className="booking-route-display">
+              <div className="location-point pickup">
+                <MapPin size={20} />
+                <span>{booking.pickupLocation}</span>
+              </div>
+              <div className="route-arrow">→</div>
+              <div className="location-point dropoff">
+                <MapPin size={20} />
+                <span>{booking.dropLocation}</span>
+              </div>
+            </div>
+
+            <div className="auto-refresh-toggle">
+              <label className="toggle-label">
+                <input
+                  type="checkbox"
+                  checked={autoRefresh}
+                  onChange={(e) => setAutoRefresh(e.target.checked)}
+                  className="toggle-checkbox"
+                />
+                <span className="toggle-slider"></span>
+                <span className="toggle-text">
+                  <RefreshCw size={16} />
+                  Auto-refresh status (30s)
+                </span>
+              </label>
             </div>
 
             <div className="booking-card-body">

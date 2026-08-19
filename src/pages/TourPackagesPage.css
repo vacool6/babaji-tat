@@ -723,3 +723,319 @@
     height: 220px;
   }
 }
+
+/* Custom Itinerary Banner */
+.custom-itinerary-banner {
+  max-width: var(--max-width-container);
+  margin: var(--spacing-3xl) auto;
+  padding: 0 var(--spacing-xl);
+}
+
+.banner-content {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-3xl);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-2xl);
+  box-shadow: 0 10px 40px rgba(18, 59, 53, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.banner-content::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255, 140, 0, 0.2) 0%, transparent 70%);
+  animation: float 6s ease-in-out infinite;
+}
+
+.banner-text {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xl);
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.banner-icon {
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.banner-text h2 {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-white);
+  margin-bottom: var(--spacing-sm);
+  font-family: var(--font-family-heading);
+}
+
+.banner-text p {
+  font-size: var(--font-size-base);
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+}
+
+.create-custom-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-2xl);
+  background: var(--color-accent);
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  box-shadow: 0 4px 20px rgba(255, 140, 0, 0.3);
+  position: relative;
+  z-index: 1;
+}
+
+.create-custom-btn:hover {
+  background: var(--color-accent-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 30px rgba(255, 140, 0, 0.4);
+}
+
+/* Custom Itinerary Modal */
+.custom-itinerary-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: var(--spacing-xl);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.custom-itinerary-modal {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  max-width: 700px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-2xl);
+  border-bottom: 2px solid var(--color-border-light);
+  background: linear-gradient(135deg, rgba(18, 59, 53, 0.05) 0%, rgba(255, 140, 0, 0.05) 100%);
+}
+
+.modal-header h3 {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: var(--font-family-heading);
+}
+
+.modal-close-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  transition: all 0.2s ease;
+  padding: var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close-btn:hover {
+  background: rgba(255, 0, 0, 0.1);
+  color: var(--color-accent);
+}
+
+.custom-itinerary-form {
+  padding: var(--spacing-2xl);
+}
+
+.custom-itinerary-form .form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.custom-itinerary-form .form-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--spacing-lg);
+}
+
+.custom-itinerary-form label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.custom-itinerary-form input,
+.custom-itinerary-form select,
+.custom-itinerary-form textarea {
+  padding: var(--spacing-md) var(--spacing-lg);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-family: var(--font-family-primary);
+  color: var(--color-text-primary);
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.custom-itinerary-form input:hover,
+.custom-itinerary-form select:hover,
+.custom-itinerary-form textarea:hover {
+  border-color: var(--color-accent);
+  background: var(--color-white);
+}
+
+.custom-itinerary-form input:focus,
+.custom-itinerary-form select:focus,
+.custom-itinerary-form textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(18, 59, 53, 0.1);
+  background: var(--color-white);
+}
+
+.custom-itinerary-form textarea {
+  resize: vertical;
+  min-height: 100px;
+  line-height: 1.6;
+}
+
+.submit-custom-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-2xl);
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+  margin-top: var(--spacing-lg);
+}
+
+.submit-custom-btn:hover {
+  background: linear-gradient(135deg, #128C7E, #075E54);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 30px rgba(37, 211, 102, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .banner-content {
+    flex-direction: column;
+    text-align: center;
+    padding: var(--spacing-2xl);
+  }
+
+  .banner-text {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .banner-text h2 {
+    font-size: var(--font-size-xl);
+  }
+
+  .create-custom-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .custom-itinerary-modal {
+    margin: var(--spacing-lg);
+  }
+
+  .custom-itinerary-form .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 414px) {
+  .custom-itinerary-banner {
+    padding: 0 var(--spacing-md);
+  }
+
+  .banner-content {
+    padding: var(--spacing-xl);
+  }
+
+  .banner-text h2 {
+    font-size: var(--font-size-lg);
+  }
+
+  .banner-text p {
+    font-size: var(--font-size-sm);
+  }
+
+  .modal-header {
+    padding: var(--spacing-xl);
+  }
+
+  .modal-header h3 {
+    font-size: var(--font-size-xl);
+  }
+
+  .custom-itinerary-form {
+    padding: var(--spacing-xl);
+  }
+}

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
+import StaticMap from "../components/StaticMap/StaticMap";
 import "./ContactPage.css";
 
 const ContactPage = () => {
@@ -56,8 +57,8 @@ const ContactPage = () => {
               <Phone size={24} />
             </div>
             <h3 className="contact-info-title">Call Us</h3>
-            <p className="contact-info-text">+91 98765 43210</p>
-            <p className="contact-info-text">+91 98765 43211</p>
+            <p className="contact-info-text">+91 94100 53567</p>
+            <p className="contact-info-text">+91 70551 93596</p>
             <span className="contact-info-label">
               Mon-Sun: 8:00 AM - 10:00 PM
             </span>
@@ -68,8 +69,8 @@ const ContactPage = () => {
               <Mail size={24} />
             </div>
             <h3 className="contact-info-title">Email Us</h3>
-            <p className="contact-info-text">info@babajitours.com</p>
-            <p className="contact-info-text">booking@babajitours.com</p>
+            <p className="contact-info-text">babajitravels42@gmail.com</p>
+            <p className="contact-info-text">www.babajitravels.com</p>
             <span className="contact-info-label">We reply within 24 hours</span>
           </div>
 
@@ -78,9 +79,9 @@ const ContactPage = () => {
               <MapPin size={24} />
             </div>
             <h3 className="contact-info-title">Visit Us</h3>
-            <p className="contact-info-text">123 Mall Road, Dehradun</p>
-            <p className="contact-info-text">Uttarakhand - 248001</p>
-            <span className="contact-info-label">India</span>
+            <p className="contact-info-text">Trade Center, 4, Bareilly - Nainital Rd</p>
+            <p className="contact-info-text">Tikonia Chauraha, Haldwani</p>
+            <span className="contact-info-label">Nainital, Uttarakhand - 263139</span>
           </div>
 
           <div className="contact-info-card">
@@ -129,7 +130,7 @@ const ContactPage = () => {
                   <input
                     type="tel"
                     name="phone"
-                    placeholder="+91 98765 43210"
+                    placeholder="+91 94100 53567"
                     className="form-input"
                     value={formData.phone}
                     onChange={handleInputChange}
@@ -196,11 +197,11 @@ const ContactPage = () => {
 
           {/* Map Section */}
           <div className="contact-map-container">
-            <div className="map-placeholder">
-              <MapPin size={48} />
-              <p>Map Location</p>
-              <span>123 Mall Road, Dehradun, Uttarakhand</span>
-            </div>
+            <StaticMap
+              lat={29.223506}
+              lng={79.530468}
+              address="Trade Center, 4, Bareilly - Nainital Rd, Tikonia Chauraha, Haldwani, Nainital, Uttarakhand - 263139"
+            />
           </div>
         </div>
       </div>

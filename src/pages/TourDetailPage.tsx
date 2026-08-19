@@ -201,7 +201,7 @@ const TourDetailPage = () => {
                 <input
                   type="tel"
                   name="phoneNumber"
-                  placeholder="+91 98765 43210"
+                  placeholder="+91 94100 53567"
                   className="form-input"
                   value={enquiryForm.phoneNumber}
                   onChange={handleInputChange}

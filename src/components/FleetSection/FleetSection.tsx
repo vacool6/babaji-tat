@@ -80,6 +80,7 @@ const FleetSection = () => {
           {vehicles.map((vehicle) => (
             <div key={vehicle.id} className="vehicle-card">
               <div className="vehicle-image-wrapper">
+                <div className="vehicle-type-badge">{vehicle.type}</div>
                 <img
                   src={vehicle.image}
                   alt={vehicle.name}
@@ -89,7 +90,6 @@ const FleetSection = () => {
                     e.currentTarget.style.backgroundColor = '#f0f0f0';
                   }}
                 />
-                <div className="vehicle-type-badge">{vehicle.type}</div>
               </div>
 
               <div className="vehicle-info">
@@ -137,7 +137,7 @@ const FleetSection = () => {
             </button>
             <button className="cta-button cta-button-secondary" onClick={handleEnquire}>
               <Phone size={20} />
-              <span>Call Now: +91 98765 43210</span>
+              <span>Call Now: +91 94100 53567</span>
             </button>
           </div>
         </div>

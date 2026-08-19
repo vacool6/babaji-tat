@@ -33,7 +33,7 @@ const TestimonialsSection = () => {
       name: "Amit Patel",
       location: "Bangalore",
       rating: 5,
-      comment: "Highly recommend Babaji Tour & Travel! They helped us plan our entire Rajasthan trip. Great experience from start to finish with excellent customer support.",
+      comment: "Highly recommend Babaji Travels! They helped us plan our entire Rajasthan trip. Great experience from start to finish with excellent customer support.",
       trip: "Rajasthan Heritage Tour",
     },
   ];

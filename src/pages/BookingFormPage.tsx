@@ -192,7 +192,7 @@ const BookingFormPage = () => {
         amount: data.amount * 100,
         currency: data.currency,
         order_id: data.orderId,
-        name: "Babaji Tours & Travels",
+        name: "Babaji Travels",
         description: `${vehicle.name} - ${pickup} to ${drop}`,
         image: "/favicon.svg",
         prefill: {

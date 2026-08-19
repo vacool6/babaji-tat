@@ -741,6 +741,321 @@ export const tourPackages: TourPackage[] = [
     included: ["3 Nights Tent Stay", "All Meals", "Transfers", "Festival Entry"],
     excluded: ["Activities", "Shopping", "Personal Expenses"],
   },
+  {
+    id: "16",
+    name: "Char Dham Yatra - Uttarakhand",
+    image:
+      "https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=800&q=80",
+    duration: "10N / 11D",
+    tourType: "Pilgrimage",
+    features: ["Temple Circuit", "Guide", "Permits"],
+    price: 48999,
+    destination: "Haridwar",
+    theme: ["Pilgrimage", "Spiritual"],
+    location: "Uttarakhand, India",
+    overview:
+      "Complete the sacred Char Dham Yatra visiting Yamunotri, Gangotri, Kedarnath, and Badrinath - the four holiest Hindu pilgrimage sites in the Himalayas.",
+    itinerary: [
+      {
+        day: 1,
+        title: "Arrival in Haridwar",
+        description: "Arrive in Haridwar. Check in. Evening Ganga Aarti at Har Ki Pauri.",
+      },
+      {
+        day: 2,
+        title: "Haridwar to Barkot",
+        description: "Drive to Barkot via Mussoorie and Kempty Falls. Overnight at Barkot.",
+      },
+      {
+        day: 3,
+        title: "Yamunotri Darshan",
+        description: "Drive to Janki Chatti. Trek/Palki to Yamunotri Temple. Return to Barkot.",
+      },
+      {
+        day: 4,
+        title: "Barkot to Uttarkashi",
+        description: "Drive to Uttarkashi. Visit Vishwanath Temple. Overnight stay.",
+      },
+      {
+        day: 5,
+        title: "Gangotri Darshan",
+        description: "Visit Gangotri Temple. Darshan and puja. Return to Uttarkashi.",
+      },
+      {
+        day: 6,
+        title: "Uttarkashi to Guptkashi",
+        description: "Drive to Guptkashi via Tehri Dam. Check in and rest for next day trek.",
+      },
+      {
+        day: 7,
+        title: "Kedarnath Darshan",
+        description: "Drive to Gaurikund. Trek/Helicopter to Kedarnath. Darshan. Return to Guptkashi.",
+      },
+      {
+        day: 8,
+        title: "Guptkashi to Badrinath",
+        description: "Scenic drive to Badrinath. Evening temple visit. Overnight at Badrinath.",
+      },
+      {
+        day: 9,
+        title: "Badrinath Darshan & Mana Village",
+        description: "Early morning darshan. Visit Mana village, Vyas Gufa, Bhim Pul. Drive to Rudraprayag.",
+      },
+      {
+        day: 10,
+        title: "Rudraprayag to Rishikesh",
+        description: "Drive to Rishikesh. Visit Triveni Ghat. Evening aarti. Overnight stay.",
+      },
+      {
+        day: 11,
+        title: "Rishikesh & Departure",
+        description: "Visit Ram Jhula, Laxman Jhula, Beatles Ashram. Transfer to Haridwar/Dehradun for departure.",
+      },
+    ],
+    included: [
+      "10 Nights Hotels/Guesthouses",
+      "Daily Breakfast & Dinner",
+      "AC Vehicle (as per road conditions)",
+      "All Permits & Registrations",
+      "Experienced Driver & Guide",
+    ],
+    excluded: [
+      "Helicopter charges for Kedarnath",
+      "Pony/Palki charges",
+      "Temple donations",
+      "Lunch",
+      "Personal expenses",
+    ],
+  },
+  {
+    id: "17",
+    name: "Tirupati Balaji Darshan",
+    image:
+      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=800&q=80",
+    duration: "2N / 3D",
+    tourType: "Pilgrimage",
+    features: ["VIP Darshan", "Guide"],
+    price: 13999,
+    destination: "Tirupati",
+    theme: ["Pilgrimage", "Spiritual"],
+    location: "Andhra Pradesh, India",
+    overview:
+      "Seek blessings at Lord Venkateswara Temple, one of the richest and most visited temples in the world.",
+    itinerary: [
+      {
+        day: 1,
+        title: "Arrival in Tirupati",
+        description: "Arrive at Tirupati. Check in. Evening visit to ISKCON Temple and local temples.",
+      },
+      {
+        day: 2,
+        title: "Tirumala Darshan",
+        description: "Early morning VIP darshan at Tirumala Temple. Visit Akasa Ganga, Papavinasanam. Return to Tirupati.",
+      },
+      {
+        day: 3,
+        title: "Local Temples & Departure",
+        description: "Visit Srikalahasti Temple, Kanipakam Vinayaka Temple. Transfer to station/airport.",
+      },
+    ],
+    included: ["2 Nights Hotel", "Breakfast", "VIP Darshan Tickets", "Transfers", "Guide"],
+    excluded: ["Lunch & Dinner", "Temple Donations", "Laddoo Prasadam", "Personal Expenses"],
+  },
+  {
+    id: "18",
+    name: "Shirdi Sai Baba Pilgrimage",
+    image:
+      "https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=800&q=80",
+    duration: "2N / 3D",
+    tourType: "Pilgrimage",
+    features: ["Temple Stay Option", "Aarti"],
+    price: 12999,
+    destination: "Shirdi",
+    theme: ["Pilgrimage", "Spiritual"],
+    location: "Maharashtra, India",
+    overview:
+      "Divine pilgrimage to Shirdi Sai Baba Temple with darshan, aarti, and visits to associated holy sites.",
+    itinerary: [
+      {
+        day: 1,
+        title: "Arrival in Shirdi",
+        description: "Check in. Visit Sai Baba Samadhi Mandir. Attend evening aarti. Dwarkamai darshan.",
+      },
+      {
+        day: 2,
+        title: "Shirdi Full Day",
+        description: "Early morning darshan. Visit Chavadi, Lendi Baug, Gurusthan, Khandoba Temple. Shopping for religious items.",
+      },
+      {
+        day: 3,
+        title: "Shani Shingnapur & Departure",
+        description: "Visit Shani Shingnapur Temple. Return to Shirdi. Final darshan and departure.",
+      },
+    ],
+    included: ["2 Nights Hotel", "Breakfast", "Darshan Arrangements", "Transfers"],
+    excluded: ["Lunch & Dinner", "Donations", "Shopping", "Personal Expenses"],
+  },
+  {
+    id: "19",
+    name: "Dwarka-Somnath Pilgrimage",
+    image:
+      "https://images.unsplash.com/photo-1605540436563-5bca919ae766?w=800&q=80",
+    duration: "4N / 5D",
+    tourType: "Pilgrimage",
+    features: ["Jyotirlinga", "Beach Temples"],
+    price: 22999,
+    destination: "Dwarka",
+    theme: ["Pilgrimage", "Spiritual"],
+    location: "Gujarat, India",
+    overview:
+      "Sacred journey to Dwarka (Lord Krishna's kingdom) and Somnath (first Jyotirlinga), covering important temples of Gujarat.",
+    itinerary: [
+      {
+        day: 1,
+        title: "Arrival in Dwarka",
+        description: "Arrive in Dwarka. Check in. Evening darshan at Dwarkadhish Temple. Gomti Ghat aarti.",
+      },
+      {
+        day: 2,
+        title: "Dwarka Temples",
+        description: "Visit Nageshwar Jyotirlinga, Gopi Talav, Beyt Dwarka (by boat). Rukmini Temple.",
+      },
+      {
+        day: 3,
+        title: "Dwarka to Somnath",
+        description: "Drive to Somnath via Porbandar. Visit Kirti Mandir. Check in at Somnath.",
+      },
+      {
+        day: 4,
+        title: "Somnath & Diu",
+        description: "Morning darshan at Somnath Temple. Bhalka Tirth, Triveni Sangam. Day trip to Diu beaches.",
+      },
+      {
+        day: 5,
+        title: "Somnath Local & Departure",
+        description: "Visit Prabhas Patan Museum. Last darshan and aarti. Transfer to Rajkot/Ahmedabad.",
+      },
+    ],
+    included: ["4 Nights Hotels", "Breakfast", "Transfers", "Boat to Beyt Dwarka"],
+    excluded: ["Lunch & Dinner", "Entry Fees", "Temple Donations", "Personal Expenses"],
+  },
+  {
+    id: "20",
+    name: "Ajmer Sharif Dargah Pilgrimage",
+    image:
+      "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=800&q=80",
+    duration: "2N / 3D",
+    tourType: "Pilgrimage",
+    features: ["Sufi Shrine", "Pushkar"],
+    price: 11999,
+    destination: "Ajmer",
+    theme: ["Pilgrimage", "Spiritual"],
+    location: "Rajasthan, India",
+    overview:
+      "Spiritual journey to the famous Sufi shrine of Khwaja Moinuddin Chishti and holy Pushkar.",
+    itinerary: [
+      {
+        day: 1,
+        title: "Arrival in Ajmer",
+        description: "Check in. Visit Ajmer Sharif Dargah for ziarat. Adhai Din Ka Jhonpra. Ana Sagar Lake.",
+      },
+      {
+        day: 2,
+        title: "Pushkar Excursion",
+        description: "Drive to Pushkar. Visit Brahma Temple, Pushkar Lake (52 ghats). Savitri Temple. Camel ride.",
+      },
+      {
+        day: 3,
+        title: "Final Ziarat & Departure",
+        description: "Morning ziarat at Dargah. Shopping at Naya Bazaar. Transfer to Jaipur/Ajmer station.",
+      },
+    ],
+    included: ["2 Nights Hotel", "Breakfast", "Transfers", "Guide"],
+    excluded: ["Lunch & Dinner", "Chadar/Flowers", "Donations", "Personal Expenses"],
+  },
+  {
+    id: "21",
+    name: "Mata Vaishno Devi Yatra",
+    image:
+      "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800&q=80",
+    duration: "3N / 4D",
+    tourType: "Pilgrimage",
+    features: ["Trek/Helicopter Option", "Cave Temple"],
+    price: 17999,
+    destination: "Katra",
+    theme: ["Pilgrimage", "Adventure"],
+    location: "Jammu & Kashmir, India",
+    overview:
+      "Sacred pilgrimage to Mata Vaishno Devi cave temple, one of the holiest Hindu shrines in the Himalayas.",
+    itinerary: [
+      {
+        day: 1,
+        title: "Arrival in Jammu",
+        description: "Arrive in Jammu. Drive to Katra. Check in. Rest and prepare for trek. Visit local market.",
+      },
+      {
+        day: 2,
+        title: "Vaishno Devi Darshan",
+        description: "Early morning start trek (13km) or helicopter. Darshan at Bhawan. Bhairon Temple visit. Return to Katra.",
+      },
+      {
+        day: 3,
+        title: "Shivkhori Excursion",
+        description: "Day trip to Shivkhori Cave Temple. Natural Shivling formation. Return to Katra.",
+      },
+      {
+        day: 4,
+        title: "Katra Temples & Departure",
+        description: "Visit Baba Dhansar, Jhajjar Kotli. Transfer to Jammu for onward journey.",
+      },
+    ],
+    included: ["3 Nights Hotels", "Breakfast & Dinner", "Transfers", "Yatra Registration"],
+    excluded: ["Helicopter charges", "Pony/Palki", "Bhandara", "Personal Expenses"],
+  },
+  {
+    id: "22",
+    name: "Rameshwaram & Kanyakumari Pilgrimage",
+    image:
+      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=800&q=80",
+    duration: "4N / 5D",
+    tourType: "Pilgrimage",
+    features: ["Jyotirlinga", "Southern Tip"],
+    price: 20999,
+    destination: "Rameshwaram",
+    theme: ["Pilgrimage", "Coastal"],
+    location: "Tamil Nadu, India",
+    overview:
+      "Divine journey to Rameshwaram (Jyotirlinga) and Kanyakumari (southernmost tip of India) with Madurai Meenakshi Temple.",
+    itinerary: [
+      {
+        day: 1,
+        title: "Arrival in Madurai",
+        description: "Arrive in Madurai. Visit Meenakshi Amman Temple. Thirumalai Nayak Palace. Evening ceremony.",
+      },
+      {
+        day: 2,
+        title: "Madurai to Rameshwaram",
+        description: "Drive to Rameshwaram. Check in. Pamban Bridge view. Evening temple visit.",
+      },
+      {
+        day: 3,
+        title: "Rameshwaram Darshan",
+        description: "Early bath in Agni Theertham. 22 wells darshan. Ramanathaswamy Temple. Dhanushkodi excursion.",
+      },
+      {
+        day: 4,
+        title: "Rameshwaram to Kanyakumari",
+        description: "Drive to Kanyakumari. Vivekananda Rock, Thiruvalluvar Statue. Sunset view at Triveni Sangam.",
+      },
+      {
+        day: 5,
+        title: "Kanyakumari & Departure",
+        description: "Sunrise darshan. Kumari Amman Temple. Padmanabhapuram Palace. Transfer to Trivandrum.",
+      },
+    ],
+    included: ["4 Nights Hotels", "Breakfast", "Transfers", "Ferry Tickets"],
+    excluded: ["Lunch & Dinner", "Archana/Puja charges", "Entry Fees", "Personal Expenses"],
+  },
 ];
 
 export const getTourPackageById = (id: string): TourPackage | undefined => {

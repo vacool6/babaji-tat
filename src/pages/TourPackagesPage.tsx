@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Clock, MapPin, Users, SlidersHorizontal, X, Star, Sparkles, TrendingUp } from "lucide-react";
+import { Clock, MapPin, Users, SlidersHorizontal, X, Star, Sparkles, TrendingUp, Pencil, Send } from "lucide-react";
 import { tourPackages } from "../data/tourPackages";
 import type { TourPackage } from "../data/tourPackages";
 import "./TourPackagesPage.css";
@@ -14,6 +14,17 @@ const TourPackagesPage = () => {
   const [selectedThemes, setSelectedThemes] = useState<string[]>([]);
   const [showFilters, setShowFilters] = useState(false);
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+  const [showCustomForm, setShowCustomForm] = useState(false);
+  const [customItineraryForm, setCustomItineraryForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    destination: "",
+    duration: "",
+    budget: "",
+    travelers: "",
+    requirements: "",
+  });
 
   const handleDestinationFilter = (destination: string) => {
     setSelectedDestinations((prev) =>
@@ -88,7 +99,43 @@ const TourPackagesPage = () => {
 
   const handleEnquire = (pkg: TourPackage) => {
     // Handle enquiry logic here
-    alert(`Enquiry for ${pkg.name}. Contact: +91 98765 43210`);
+    alert(`Enquiry for ${pkg.name}. Contact: +91 94100 53567`);
+  };
+
+  const handleCustomFormChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setCustomItineraryForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleCustomItinerarySubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!customItineraryForm.name || !customItineraryForm.email || !customItineraryForm.phone) {
+      alert("Please fill in all required fields");
+      return;
+    }
+
+    // Create WhatsApp message
+    const message = `🎯 Custom Itinerary Request\n\nName: ${customItineraryForm.name}\nEmail: ${customItineraryForm.email}\nPhone: ${customItineraryForm.phone}\nDestination: ${customItineraryForm.destination || "Open to suggestions"}\nDuration: ${customItineraryForm.duration || "Flexible"}\nBudget: ${customItineraryForm.budget || "Not specified"}\nTravelers: ${customItineraryForm.travelers || "Not specified"}\nRequirements: ${customItineraryForm.requirements || "None"}`;
+    
+    const whatsappUrl = `https://wa.me/919410053567?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, "_blank");
+    
+    // Reset form
+    setCustomItineraryForm({
+      name: "",
+      email: "",
+      phone: "",
+      destination: "",
+      duration: "",
+      budget: "",
+      travelers: "",
+      requirements: "",
+    });
+    setShowCustomForm(false);
+    alert("Redirecting to WhatsApp. We'll get back to you shortly!");
   };
 
   const getPopularityBadge = (index: number) => {
@@ -123,6 +170,149 @@ const TourPackagesPage = () => {
           </div>
         </div>
       </div>
+
+      {/* Custom Itinerary Banner */}
+      <div className="custom-itinerary-banner">
+        <div className="banner-content">
+          <div className="banner-text">
+            <Pencil size={32} className="banner-icon" />
+            <div>
+              <h2>Can't Find Your Dream Tour?</h2>
+              <p>Let us create a personalized itinerary just for you! Tell us your preferences and we'll design the perfect journey.</p>
+            </div>
+          </div>
+          <button className="create-custom-btn" onClick={() => setShowCustomForm(true)}>
+            <Sparkles size={20} />
+            Create Custom Itinerary
+          </button>
+        </div>
+      </div>
+
+      {/* Custom Itinerary Modal */}
+      {showCustomForm && (
+        <div className="custom-itinerary-modal-overlay" onClick={() => setShowCustomForm(false)}>
+          <div className="custom-itinerary-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h3>✨ Create Your Custom Itinerary</h3>
+              <button className="modal-close-btn" onClick={() => setShowCustomForm(false)}>
+                <X size={24} />
+              </button>
+            </div>
+            
+            <form className="custom-itinerary-form" onSubmit={handleCustomItinerarySubmit}>
+              <div className="form-row">
+                <div className="form-field">
+                  <label>Name *</label>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Your full name"
+                    value={customItineraryForm.name}
+                    onChange={handleCustomFormChange}
+                    required
+                  />
+                </div>
+                <div className="form-field">
+                  <label>Phone Number *</label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    placeholder="+91 94100 53567"
+                    value={customItineraryForm.phone}
+                    onChange={handleCustomFormChange}
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="form-field">
+                <label>Email Address *</label>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="your.email@example.com"
+                  value={customItineraryForm.email}
+                  onChange={handleCustomFormChange}
+                  required
+                />
+              </div>
+
+              <div className="form-row">
+                <div className="form-field">
+                  <label>Preferred Destination</label>
+                  <input
+                    type="text"
+                    name="destination"
+                    placeholder="e.g., Goa, Rajasthan, Kerala"
+                    value={customItineraryForm.destination}
+                    onChange={handleCustomFormChange}
+                  />
+                </div>
+                <div className="form-field">
+                  <label>Duration</label>
+                  <select
+                    name="duration"
+                    value={customItineraryForm.duration}
+                    onChange={handleCustomFormChange}
+                  >
+                    <option value="">Select duration</option>
+                    <option value="2-3 Days">2-3 Days</option>
+                    <option value="4-5 Days">4-5 Days</option>
+                    <option value="6-7 Days">6-7 Days</option>
+                    <option value="8-10 Days">8-10 Days</option>
+                    <option value="10+ Days">10+ Days</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="form-row">
+                <div className="form-field">
+                  <label>Budget (per person)</label>
+                  <select
+                    name="budget"
+                    value={customItineraryForm.budget}
+                    onChange={handleCustomFormChange}
+                  >
+                    <option value="">Select budget range</option>
+                    <option value="Under ₹10,000">Under ₹10,000</option>
+                    <option value="₹10,000 - ₹25,000">₹10,000 - ₹25,000</option>
+                    <option value="₹25,000 - ₹50,000">₹25,000 - ₹50,000</option>
+                    <option value="₹50,000 - ₹1,00,000">₹50,000 - ₹1,00,000</option>
+                    <option value="Above ₹1,00,000">Above ₹1,00,000</option>
+                  </select>
+                </div>
+                <div className="form-field">
+                  <label>Number of Travelers</label>
+                  <input
+                    type="number"
+                    name="travelers"
+                    placeholder="e.g., 2, 4, 6"
+                    min="1"
+                    value={customItineraryForm.travelers}
+                    onChange={handleCustomFormChange}
+                  />
+                </div>
+              </div>
+
+              <div className="form-field">
+                <label>Special Requirements or Preferences</label>
+                <textarea
+                  name="requirements"
+                  placeholder="Tell us about your interests, activities you'd like, accommodation preferences, any special needs, etc."
+                  rows={4}
+                  value={customItineraryForm.requirements}
+                  onChange={handleCustomFormChange}
+                />
+              </div>
+
+              <button type="submit" className="submit-custom-btn">
+                <Send size={20} />
+                Send Enquiry via WhatsApp
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
 
       <div className="tour-packages-container">
         {/* Mobile Filter Toggle Button */}
