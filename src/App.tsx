@@ -13,6 +13,7 @@ import ContactPage from "./pages/ContactPage";
 import TrackOrderPage from "./pages/TrackOrderPage";
 import AdminLoginPage from "./pages/AdminLoginPage";
 import AdminDashboardPage from "./pages/AdminDashboardPage";
+import NotFoundPage from "./pages/NotFoundPage";
 import SEOHead from "./components/SEOHead/SEOHead";
 import { useScrollToTop } from "./hooks/useScrollToTop";
 import { BookingProvider } from "./context/BookingContext";
@@ -21,7 +22,13 @@ import { BookingProvider } from "./context/BookingContext";
 const PublicLayout = ({ children }: { children: React.ReactNode }) => (
   <>
     <Navbar />
-    <main style={{ minHeight: "calc(100vh - 400px)", display: "flex", flexDirection: "column" }}>
+    <main
+      style={{
+        minHeight: "calc(100vh - 400px)",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
       {children}
     </main>
     <Footer />
@@ -36,7 +43,10 @@ function App() {
 
   return (
     <BookingProvider>
-      <div className="app" style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+      <div
+        className="app"
+        style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
+      >
         <Routes>
           {/* Admin Routes - No Navbar/Footer */}
           <Route path="/admin" element={<AdminLoginPage />} />
@@ -152,6 +162,22 @@ function App() {
                   canonicalUrl="https://babajitravel.com/contact"
                 />
                 <ContactPage />
+              </PublicLayout>
+            }
+          />
+
+          {/* 404 Catch-All Route */}
+          <Route
+            path="*"
+            element={
+              <PublicLayout>
+                <SEOHead
+                  title="Page Not Found | Babaji Travels"
+                  description="The page you're looking for doesn't exist."
+                  keywords="404, not found"
+                  canonicalUrl="https://babajitravel.com/"
+                />
+                <NotFoundPage />
               </PublicLayout>
             }
           />

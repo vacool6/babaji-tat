@@ -1,4 +1,5 @@
-import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
+import { GoogleMap, Marker } from "@react-google-maps/api";
+import { useGoogleMapsLoader } from "../../hooks/useGoogleMapsLoader";
 import "./StaticMap.css";
 
 interface StaticMapProps {
@@ -13,11 +14,7 @@ const containerStyle = {
 };
 
 const StaticMap = ({ lat, lng, address }: StaticMapProps) => {
-  const { isLoaded } = useJsApiLoader({
-    id: "google-map-script",
-    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY || "",
-    region: "IN",
-  });
+  const { isLoaded } = useGoogleMapsLoader();
 
   const center = {
     lat,

@@ -26,13 +26,7 @@ const Footer = () => {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="/cabs">Cabs</Link>
-              </li>
-              <li>
-                <Link to="/packages">Tour Packages</Link>
-              </li>
-              <li>
-                <Link to="/destinations">Destinations</Link>
+                <Link to="/tour-packages">Tour Packages</Link>
               </li>
             </ul>
           </div>
@@ -41,19 +35,33 @@ const Footer = () => {
             <h4 className="footer-heading">Contact Us</h4>
             <ul className="footer-links">
               <li>
-                <Phone size={16} style={{ marginRight: '8px', display: 'inline' }} />
+                <Phone
+                  size={16}
+                  style={{ marginRight: "8px", display: "inline" }}
+                />
                 <a href="tel:+919410053567">+91 94100 53567</a>
               </li>
               <li>
-                <Phone size={16} style={{ marginRight: '8px', display: 'inline' }} />
+                <Phone
+                  size={16}
+                  style={{ marginRight: "8px", display: "inline" }}
+                />
                 <a href="tel:+917055193596">+91 70551 93596</a>
               </li>
               <li>
-                <Mail size={16} style={{ marginRight: '8px', display: 'inline' }} />
-                <a href="mailto:babajitravels42@gmail.com">babajitravels42@gmail.com</a>
+                <Mail
+                  size={16}
+                  style={{ marginRight: "8px", display: "inline" }}
+                />
+                <a href="mailto:babajitravels42@gmail.com">
+                  babajitravels42@gmail.com
+                </a>
               </li>
               <li>
-                <MapPin size={16} style={{ marginRight: '8px', display: 'inline' }} />
+                <MapPin
+                  size={16}
+                  style={{ marginRight: "8px", display: "inline" }}
+                />
                 <span>Haldwani, Nainital, Uttarakhand</span>
               </li>
             </ul>

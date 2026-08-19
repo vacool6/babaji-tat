@@ -1,6 +1,7 @@
 import { useState, useCallback, useRef, useEffect } from "react";
-import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
+import { GoogleMap, Marker } from "@react-google-maps/api";
 import { useDebounce } from "../../hooks/useDebounce";
+import { useGoogleMapsLoader } from "../../hooks/useGoogleMapsLoader";
 import "./LocationPicker.css";
 
 interface LocationPickerProps {
@@ -31,8 +32,6 @@ const defaultCenter = {
   lng: 77.209,
 };
 
-const libraries: ("places" | "geometry")[] = ["places", "geometry"];
-
 const LocationPicker = ({
   isOpen,
   onClose,
@@ -40,12 +39,7 @@ const LocationPicker = ({
   title,
   initialLocation,
 }: LocationPickerProps) => {
-  const { isLoaded } = useJsApiLoader({
-    id: "google-map-script",
-    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY || "",
-    libraries,
-    region: "IN",
-  });
+  const { isLoaded } = useGoogleMapsLoader();
 
   const [markerPosition, setMarkerPosition] = useState(
     initialLocation || defaultCenter,
